@@ -1,3 +1,5 @@
+package com.kl.wework;
+
 public class WeworkConfig {
     public String agentId = "1000002";
     public String secret = "yQvRMp3M3aNHnWpGZ8tnNRLMBY84GefYNE__B74im74";
@@ -11,6 +13,10 @@ public class WeworkConfig {
             weworkConfig = new WeworkConfig();
         }
         return weworkConfig;
+    }
+
+    public static void load(String path) {
+
     }
 
 
