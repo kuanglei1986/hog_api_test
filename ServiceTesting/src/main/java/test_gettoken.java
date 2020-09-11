@@ -10,8 +10,8 @@ public class test_gettoken {
     @Test
     void testToken() {
         given().log().all()
-                .queryParam("corpid","ww73530bb447ccc302")
-                .queryParam("corpsecret","yQvRMp3M3aNHnWpGZ8tnNRLMBY84GefYNE__B74im74")
+                .queryParam("corpid",WeworkConfig.getInstance().corId)
+                .queryParam("corpsecret",WeworkConfig.getInstance().secret)
                 .when().get("https://qyapi.weixin.qq.com/cgi-bin/gettoken")
                 .then().log().all().statusCode(200).body("errcode",equalTo(0));
 
