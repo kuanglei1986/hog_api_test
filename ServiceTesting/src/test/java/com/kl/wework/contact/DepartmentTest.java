@@ -28,8 +28,8 @@ class DepartmentTest {
 
     @Test
     void create() {
-        department.create("dep2", "1")
-        .then().body("errcode", equalTo(600004));
+        department.create("北京研发中心", "1")
+        .then().body("errcode", equalTo(60008));
 
     }
 }

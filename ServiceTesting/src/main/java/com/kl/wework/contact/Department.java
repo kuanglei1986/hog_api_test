@@ -1,5 +1,6 @@
 package com.kl.wework.contact;
 
+import com.jayway.jsonpath.JsonPath;
 import com.kl.wework.Wework;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -22,17 +23,16 @@ public class Department {
 
 //    创建部门
     public Response create(String name, String parentId) {
-         given().log().all().queryParam("access_token", Wework.getToken())
+         String body = JsonPath.parse(this.getClass().getResourceAsStream("/data/create.json"))
+                 .set("$.name", name)
+                 .set("$.parentid", parentId).jsonString();
+         return (Response) given().log().all().queryParam("access_token", Wework.getToken())
                 .contentType(ContentType.JSON)
-                .body("{\n" +
-                        "   \"name\": \""+ name + ",\n" +
-                        "   \"parentid\": " + parentId + ",\n" +
-                        "   \"order\": 1,\n" +
-                        "}")
+                .body(body)
                 .when().post("https://qyapi.weixin.qq.com/cgi-bin/department/create")
-                .then().log().all().statusCode(200).body("errcode", equalTo(0));
+                .then().log().all().statusCode(200).extract().response();
 
-        return null;
+
     }
 
 }
