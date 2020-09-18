@@ -5,6 +5,8 @@ import com.kl.wework.Wework;
 import io.restassured.http.ContentType;
 
 public class Contact extends Reseful {
+    String random = String.valueOf(System.currentTimeMillis());
+
     public Contact() {
         reset();
     }
